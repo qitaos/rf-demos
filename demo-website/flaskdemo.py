@@ -27,7 +27,7 @@ atexit.register(cleanup)
 app = Flask(__name__)
 db = Dao()
 
-api = Api(app, default_mediatype='application/xml')
+api = Api(app, default_mediatype='application/json')
 api.representations['application/xml'] = output_xml
 
 
@@ -153,33 +153,13 @@ def getlist():
     #print ret_data
     return jsonify(AllProducts=ret_data)
 
-@app.route('/api/<userid>', methods=['GET','POST'])
-def webapi(userid):
+@app.route('/post', methods=['POST','GET'])
+def webapi():
     message = None
     
-    if request.methods == 'POST':
-        if request.headers['Content-Type'] == 'text/plain':
-            return "Text Message: " + request.data
-    
-        elif request.headers['Content-Type'] == 'application/json':
-            return "JSON Message: " + json.dumps(request.json)
-
-        elif request.headers['Content-Type'] == 'application/octet-stream':
-            f = open('./binary', 'wb')
-            f.write(request.data)
-            f.close()
-            return "Binary message written!"
-
-        else:
-            return "415 Unsupported Media Type ;)"
-
-
-    elif request.methods == 'GET':
-        users = {'1':'john', '2':'steve', '3':'bill'}
-        if str(userid) in users:
-            return jsonify({userid:users[userid]})
-        else:
-            return not_found()
+    if request.method == 'POST':
+        message = request.form['username']
+        return jsonify({'username':message})
    
     #print ret_data
     return None
