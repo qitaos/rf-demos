@@ -1,0 +1,23 @@
+*** Settings ***
+Library           Selenium2Library
+Library           AutoItLibrary
+
+*** Keywords ***
+打开网页
+    Comment    log    ${CURDIR}
+    ${url}    Set Variable    ${CURDIR}/../demo/index.html
+    Comment    ${url}    Evaluate    '${url}'.replace('\\','\\\\')
+    open browser    ${url}    gc
+
+关闭网页
+    Close All Browsers
+
+关闭对话框
+    [Arguments]    ${title}    ${text}=
+    [Documentation]    关闭对话框
+    Win Wait    ${title}    ${text}    30
+    ${ret}=    control get text    ${EMPTY}    ${EMPTY}    Static2
+    Log    ${ret}
+    Control CLICK    ${EMPTY}    ${EMPTY}    Button1
+    Comment    Win Close    ${title}
+    [Return]    ${ret}

@@ -1,0 +1,16 @@
+*** Settings ***
+Resource          keyword.txt
+
+*** Keywords ***
+购买流程
+    [Arguments]    ${url}    ${setpr}    ${setqn}
+    打开浏览器    ${url}
+    输入购买产品    ${setpr}
+    输入购买数量    ${setqn}
+    点击提交
+    等待页面加载    ${setpr}
+    ${getpr}    获取产品名称
+    ${getqn}    获取数量
+    验证是否一致    ${setpr}    ${getpr}
+    验证是否一致    ${setqn}    ${getqn}
+    关闭浏览器

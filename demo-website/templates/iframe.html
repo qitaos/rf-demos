@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh_cn">
+    <head>
+        <title>购物车</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<script type=text/javascript src="{{url_for('static', filename='jquery.js')}}"></script>
+		<script type=text/javascript>
+		var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+		function del() {
+	        $.ajax({
+	            type: "GET",
+	            url: $SCRIPT_ROOT + "/remove/",
+	            contentType: "application/xml; charset=utf-8",
+	            data: { Pid: $("select#buy").val()},
+	            success: function(data) {
+	                var htmlText = "";
+	                for (pi in data.AllProducts) {
+	                    htmlText += "<option value ='"+data.AllProducts[pi].Id+"' >产品:"+data.AllProducts[pi].ProductName+",数量:"+data.AllProducts[pi].Quantity+"</option>";
+	                }
+	                $("#buy").html(htmlText);
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                alert(errorThrown);
+	            }
+	        });
+		}
+
+		function get_list() {
+	        $.ajax({
+	            type: "GET",
+	            url: $SCRIPT_ROOT + "/getlist/",
+	            contentType: "application/xml; charset=utf-8",
+	            data: { },
+	            success: function(data) {
+	                var htmlText = "";
+	                for (pi in data.AllProducts) {
+	                    htmlText += "<option value ='"+data.AllProducts[pi].Id+"' >产品:"+data.AllProducts[pi].ProductName+",数量:"+data.AllProducts[pi].Quantity+"</option>";
+	                }
+	                $("#buy").html(htmlText);
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                alert(errorThrown);
+	            }
+	        });
+		}
+        </script>
+	</head>
+    <body onload='get_list();'>
+	购物车<p>
+	<table id='cart' border='1'>
+	<tr>
+	<td>
+		<select id="buy" name="buy"></select>  
+	</td>
+	<td>
+		<button type='button' id='delete' name='delete' onclick='del();'>删除</button>
+	</td>
+	</tr>
+	</table>
+    </body>
+</html>

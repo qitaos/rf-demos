@@ -10,12 +10,17 @@
 只需要运行如下命令
 
     ```
+    #mac
     sudo pip install flask
     sudo pip install flask-httpauth
+    #windows
+    pip install flask
+    pip install flask-httpauth
+    
     ```
 
 2. setuptools安装
-    如果你的pip不好用或者网络受限制，那么只能下载单独的源码包进行安装。        下面这些都可以在https://pypi.python.org/pypi/ 上面找到，而且甚至不用搜索，直接在pypi后加上库名字即可。例如flask，他的地址在https://pypi.python.org/pypi/flask，下载源码后解压缩，进入解压缩目录，输入命令:
+    如果你的pip不好用或者网络受限制，那么只能下载单独的源码包进行安装。        下面这些都可以在https://pypi.python.org/pypi/ 上面找到，而且甚至不用搜索，直接在pypi后加上库名字即可。例如flask，他的地址在https://pypi.python.org/pypi/flask ，下载源码后解压缩，进入解压缩目录，输入命令:
     ```
     #mac
     sudo python setup.py install
@@ -41,7 +46,7 @@
 
 4. 打开网站
      
-    打开http://127.0.0.1:8000/或者http://localhost:8000/就可以看到页面了。
+    打开http://127.0.0.1:8000/ 或者 http://localhost:8000/ 就可以看到页面了。
 
 5. 目录结构
     

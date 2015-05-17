@@ -1,0 +1,38 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+打开浏览器
+    [Arguments]    ${url}
+    open browser    ${url}    gc
+
+输入购买产品
+    [Arguments]    ${product}
+    input text    ProductName    ${product}
+
+输入购买数量
+    [Arguments]    ${quantity}
+    input text    Quantity    ${quantity}
+
+点击提交
+    click button    submitBtn
+
+获取产品名称
+    ${pr}    Get Element Attribute    Pr@innerText
+    [Return]    ${pr}
+
+获取数量
+    ${qn}    Get Element Attribute    Qn@innerText
+    [Return]    ${qn}
+
+验证是否一致
+    [Arguments]    ${ver1}    ${ver2}
+    ${verify}    Should Be Equal    ${ver1}    ${ver2}
+    [Return]    ${verify}
+
+关闭浏览器
+    Close All Browsers
+
+等待页面加载
+    [Arguments]    ${text}
+    Wait Until Page Contains    ${text}

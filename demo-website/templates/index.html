@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block content %}
+<script type=text/javascript>
+
+  $(function() {
+	$("#pay").click(function() {
+		if(window.confirm(" 确认支付吗? ")) 
+		{
+			$("#deli").removeAttr('disabled');
+			window.open('/payfor/','newwin','width=500px,height=200px,toolbar=no,location=no');
+        } 
+	});
+	
+	$("#deli").click(function() {
+		window.showModalDialog('/deliver/','newdel','dialogWidth=400px;dialogHeight=150px');
+	});
+
+    $("#submitBtn").click(function() {
+
+        $.ajax({
+            type: "GET",
+            url: $SCRIPT_ROOT + "/echo/",
+            contentType: "application/xml; charset=utf-8",
+            data: { ProductName: $('input[name="ProductName"]').val(), 
+					Quantity: $('input[name="Quantity"]').val()},
+            success: function(data) {
+                $('#Pr').html(data.ProductName);
+                $('#Qn').html(data.Quantity);
+                $('#result').show();
+                $("#infoBtn").removeAttr('disabled');
+                var htmlText = "";
+                for (pi in data.AllProducts) {
+                    htmlText += "<option value ='"+data.AllProducts[pi].Id+"' >产品:"+data.AllProducts[pi].ProductName+",数量:"+data.AllProducts[pi].Quantity+"</option>";
+                }
+                $("#fra")[0].contentWindow.get_list();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        }); 
+
+    });
+	
+    $("#infoBtn").click(function() {
+		$.ajax({
+            type: "GET",
+            url: "http://localhost:9090/info",
+			contentType: "application/json; charset=utf-8",
+			dataType:'JSONP',
+			jsonpCallback:"jsonpHandler",
+            success: function(data) {
+				$('#Info').html(data.content);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    });	
+  });
+  
+</script>
+
+<table id='buy' border='1'>
+<tr>
+<td>购买产品</td>
+<td>购买数量</td>
+</tr>
+<tr>
+<td>
+<input type='text' size='10' id='ProductName' name='ProductName'></td>
+<td>
+<input type='text' size='10' id='Quantity' name='Quantity'></td>
+</tr>
+</table>
+<p>
+<button type='button' id='submitBtn' name='submitBtn'>提交</button><br />
+<button type='button' id='infoBtn' name='infoBtn' disabled>产品信息</button><br />
+<!--<strong><div id='echoResult'></div></strong>-->
+<table id='result' style='display:none' width='300' border='1'>
+<tr width='300'>
+<td width='300' nowrap >
+<div id='msg'>你购买了<span id='Pr'></span>，一共<span id='Qn'></span>件。<div id='Info'></div>
+</div>
+</td>
+</tr>
+</table>
+<p>
+<iframe id='fra' src="/iframe/" width='400' height='200'>
+</iframe>
+<p>
+<button type='button' id='pay' name='pay'>付款</button>    
+<button type='button' id='deli' name='deli' disabled >发货</button>
+
+{% endblock %}

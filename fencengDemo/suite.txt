@@ -1,0 +1,10 @@
+*** Settings ***
+Resource          flow.txt
+
+*** Test Cases ***
+case1
+    [Tags]    test1
+    购买流程    http://127.0.0.1:8000/    测试    11
+
+case2
+    购买流程    http://127.0.0.1:8000/    这是什么    22

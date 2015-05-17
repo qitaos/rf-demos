@@ -1,0 +1,27 @@
+*** Settings ***
+Library           RequestsLibrary
+Library           Collections
+Library           XML
+
+*** Test Cases ***
+case1
+    Create Session    api    http://localhost:8000
+    ${addr}    Get Request    api    users/5
+    Comment    Should Be Equal As Strings    ${addr.status_code}    200
+    log    ${addr.content}
+    ${responsedata}    to json    ${addr.content}
+    ${body}    Get Dictionary Keys    ${responsedata}
+    ${body}    Get Dictionary Items    ${responsedata}
+    ${body}    Get Dictionary Values    ${responsedata}
+    ${str}    Get From Dictionary    ${responsedata}    message
+
+case2
+    Create Session    api    http://localhost:8000
+    ${addr}    Get Request    api    qitao
+    Comment    Should Be Equal As Strings    ${addr.status_code}    200
+    log    ${addr.content}
+    ${responsedata}    to json    ${addr.content}
+    ${body}    Get Dictionary Keys    ${responsedata}
+    ${body}    Get Dictionary Items    ${responsedata}
+    ${body}    Get Dictionary Values    ${responsedata}
+    ${str}    Get From Dictionary    ${responsedata}    hello

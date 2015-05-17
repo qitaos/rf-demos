@@ -1,0 +1,28 @@
+*** Settings ***
+Library           DatabaseLibrary
+
+*** Test Cases ***
+oracle-test1
+    Connect To Database Using Custom Params    cx_Oracle    'pub_test', 'pub_test', 'd0cfs'
+    ${row}    Row Count    select * from pubtest_pa18infor_mas
+    @{rs}    Execute Sql String    begin pub_test.pkg_test_cgi.proc_cgi_proRpyPlan(); end;
+    Log many    @{rs}
+    ${row}    Row Count    select * from pubtest_pa18infor_mas
+    Disconnect From Database
+
+oracle-test2
+    Connect To Database Using Custom Params    cx_Oracle    'pub_test', 'pub_test', ' (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(Host=d0cfs.dbdev.paic.com.cn)(Port=1526))(CONNECT_DATA=(SID=d0cfs)))'
+    @{rs}    query    select * from pubtest_pa18infor_mas
+    Log many    @{rs}
+    log    @{rs}[0][0]
+    ${num}    query    select gen_num(6) from dual
+    log    ${num[0][0]}
+    Disconnect From Database
+
+*** Keywords ***
+数据库
+    [Arguments]    ${user}='pub_test'    ${pass}='pub_test'    ${tsn}='d0cfs'
+    Connect To Database Using Custom Params    cx_Oracle    ${user}, ${pass}, ${tsn}
+    @{rs}    Execute Sql String    begin \ pub_test.pkg_test_cgi.proc_cgi_proRpyPlan(); end;
+    Log many    @{rs}
+    Disconnect From Database

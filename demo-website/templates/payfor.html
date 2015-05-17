@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh_cn">
+    <head>
+        <title>付款</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<script>
+		function payfor() {
+			var cardno = document.getElementById('cardno').value;
+			if (cardno=='' || cardno ==null){
+				alert('请先输入银行卡号！');}
+			else {
+				alert('付款成功');
+				window.close();}
+		}
+        </script>
+	</head>
+    <body>
+	付款页面<p><br/>
+	选择银行<select id="bank" name="bank">
+	<option value="01">工商银行</option>
+	<option value="02">建设银行</option>
+	<option value="04">农业银行</option>
+	<option value="05">平安银行</option></select>   
+	请输入银行卡号：<input type='text' size='15' id='cardno' name='cardno'>
+	<button type='button' id='payfor' name='payfor' onclick='payfor();'>付款</button>
+    </body>
+</html>

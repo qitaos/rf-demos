@@ -1,0 +1,28 @@
+*** Settings ***
+Test Teardown     关闭网页
+Library           AutoItLibrary
+Resource          resource.txt
+
+*** Test Cases ***
+处理对话框
+    打开网页
+    click button    pay
+    ${mes}    confirm action
+    sleep    2s
+    Choose Cancel On Next Confirmation
+    click button    paycon
+    ${mes}    confirm action
+    sleep    2s
+    Choose Ok On Next Confirmation
+    click button    paycon
+    ${mes}    confirm action
+    sleep    2s
+
+处理对话框AutoIt
+    打开网页
+    click button    pay
+    ${mes}    关闭对话框    来自网页的消息
+    sleep    3s
+    click button    paycon
+    ${mes}    关闭对话框    来自网页的消息
+    sleep    2s
