@@ -6,6 +6,14 @@ Library           XML
 *** Test Cases ***
 case1
     Create Session    api    http://localhost:8000
+    ${addr}    Get Request    api    users/1
+    Comment    Should Be Equal As Strings    ${addr.status_code}    200
+    log    ${addr.content}
+    ${responsedata}    to json    ${addr.content}
+    ${body}    Get Dictionary Keys    ${responsedata}
+    ${body}    Get Dictionary Items    ${responsedata}
+    ${body}    Get Dictionary Values    ${responsedata}
+    ${str}    Get From Dictionary    ${responsedata}    1
     ${addr}    Get Request    api    users/5
     Comment    Should Be Equal As Strings    ${addr.status_code}    200
     log    ${addr.content}
@@ -17,11 +25,40 @@ case1
 
 case2
     Create Session    api    http://localhost:8000
-    ${addr}    Get Request    api    qitao
+    ${addr}    Get Request    api    hello/qitao
     Comment    Should Be Equal As Strings    ${addr.status_code}    200
     log    ${addr.content}
-    ${responsedata}    to json    ${addr.content}
+    log    ${addr}
+    ${responsedata}    To Json    ${addr.content}
     ${body}    Get Dictionary Keys    ${responsedata}
     ${body}    Get Dictionary Items    ${responsedata}
     ${body}    Get Dictionary Values    ${responsedata}
     ${str}    Get From Dictionary    ${responsedata}    hello
+    #xml方式
+    ${dict}    Create Dictionary    accept=application/xml
+    ${addr}    get Request    api    hello/qitao    ${dict}
+    Comment    Should Be Equal As Strings    ${addr.status_code}    200
+    log    ${addr.content}
+    log    ${addr}
+    ${responsedata}    Set Variable    ${addr.content}
+    ${body}    Get Element Text    ${responsedata}    hello
+    ${hello}    Get Element    ${responsedata}    hello
+    log    ${hello.text}
+    ${responsedata}    Add Element    ${responsedata}    <new id="3">test</new>
+    ${new}    Get Element Attribute    ${responsedata}    id    new
+    log    ${new}
+    ${a}    Element To String    ${responsedata}
+
+case3
+    #用户密码
+    ${auth}    Create List    ok    python
+    Create Session    api    http://localhost:8000    \    \    ${auth}
+    ${addr}    get Request    api    401
+    Comment    Should Be Equal As Strings    ${addr.status_code}    200
+    log    ${addr.content}
+    log    ${addr}
+    ${responsedata}    to json    ${addr.content}
+    ${body}    Get Dictionary Keys    ${responsedata}
+    ${body}    Get Dictionary Items    ${responsedata}
+    ${body}    Get Dictionary Values    ${responsedata}
+    ${str}    Get From Dictionary    ${responsedata}    pass

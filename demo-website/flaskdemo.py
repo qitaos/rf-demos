@@ -48,7 +48,7 @@ class Hello(Resource):
         return {'hello': entry}
 
 
-api.add_resource(Hello, '/<string:entry>')
+api.add_resource(Hello, '/hello/<string:entry>')
 
 
 
@@ -85,16 +85,16 @@ def login_required(f):
     return decorated
 
 
-@app.before_request
+"""@app.before_request
 def before_request():
     if request.path != '/':
         if not request.headers['content-type'].find('application/json'):
-            return 'Unsupported Media Type', 415
+            return 'Unsupported Media Type', 415"""
 
 @app.route('/401/')
 @auth.login_required
 def unauthorized():
-    return make_response(jsonify({'error': 'Unauthorized access'}), 403)
+    return make_response(jsonify({'pass': 'Authorized access'}), 200)
 #return 'Unauthorized access', 401
 
 @app.errorhandler(404)
