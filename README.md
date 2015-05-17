@@ -58,4 +58,4 @@
     
     RequestsDemo：RequestsLibrary的demo案例，需要在前面的网站启动后才可运行
     
-    rf-video：录制了2个视频，一个是AutoIt的视频，一个是Oracle数据库的视频。
+    rf-video：录制了2个视频，一个是AutoIt的视频，一个是Oracle数据库的视频。不过放在github上太大了，影响大家下载案例，所以我放到其他地方了，http://share.weiyun.com/0e5cee9ac473925263fe9432743826a6
