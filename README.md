@@ -6,27 +6,46 @@
 
 1. pip安装
 
-    如果使用pip安装会比较方便，特别是在mac电脑上，为了保证例子能正常运行，大家需要安装两个东东，flask、flask-httpauth。
+    如果使用pip安装会比较方便，特别是在mac电脑上，为了保证例子能正常运行，大家需要安装四个东东，flask、flask-httpauth、flask_restful、python-simplexml。感谢群友“飞一会”指出缺失的库。
 只需要运行如下命令
 
     ```
     #mac
     sudo pip install flask
     sudo pip install flask-httpauth
+    sudo pip install flask_restful
+    sudo pip install python-simplexml
     #windows
     pip install flask
     pip install flask-httpauth
-    
+    pip install flask_restful
+    pip install python-simplexml
     ```
 
 2. setuptools安装
-    如果你的pip不好用或者网络受限制，那么只能下载单独的源码包进行安装。        下面这些都可以在https://pypi.python.org/pypi/ 上面找到，而且甚至不用搜索，直接在pypi后加上库名字即可。例如flask，他的地址在https://pypi.python.org/pypi/flask ，下载源码后解压缩，进入解压缩目录，输入命令:
-    ```
+
+    如果你的pip不好用或者网络受限制，那么只能下载单独的源码包进行安装。
+    
+    下面这些都可以在https://pypi.python.org/pypi/ 上面找到，而且甚至不用搜索，直接在pypi后加上库名字即可。例如flask，他的地址在https://pypi.python.org/pypi/flask ，下载源码后解压缩，进入解压缩目录，输入命令:
+
+    ```
     #mac
     sudo python setup.py install
     
-    #windows    python setup.py install
-    ```        下面列的这些都是需要下载下来安装的    * flask        * Werkzeug        * Jinja2            * MarkupSafe        * itsdangerous        * click    * flask-httpauth
+    #windows
+    python setup.py install
+
+    ```
+    
+    下面列的这些都是需要下载下来安装的
+
+    * flask
+        * Werkzeug
+        * Jinja2
+            * MarkupSafe
+        * itsdangerous
+        * click
+    * flask-httpauth
 
 
 3. 启动demo网站
