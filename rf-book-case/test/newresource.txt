@@ -1,0 +1,27 @@
+*** Keywords ***
+随机字符
+    [Arguments]    ${arg1}    ${arg2}=123    @{arg3}
+    log    ${arg1}
+    log    ${arg2}
+    log    =@{arg3}=
+
+随机字符-1
+    [Arguments]    ${arg1}    ${arg2}=123    @{arg3}
+    log    ${arg1}
+    log    ${arg2}
+    log    =@{arg3}=
+    [Return]    ${arg1}
+
+随机字符-2
+    [Arguments]    ${arg1}    ${arg2}=123    @{arg3}
+    log    ${arg1}
+    log    ${arg2}
+    log    =@{arg3}=
+    [Return]    ${arg1}    ${arg2}
+
+随机字符-3
+    [Arguments]    ${arg1}    ${arg2}=123    @{arg3}
+    log    ${arg1}
+    log    ${arg2}
+    log    =@{arg3}=
+    [Return]    @{arg3}

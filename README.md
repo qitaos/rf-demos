@@ -46,6 +46,7 @@
         * itsdangerous
         * click
     * flask-httpauth
+    * flask_restful        * aniso8601        * six		* pytz	* python-simplexml
 
 
 3. 启动demo网站
@@ -69,7 +70,7 @@
 
 5. 目录结构
     
-    fencengDemo：Selenium2Library分层的demo案例，需要在前面的网站启动后才可运行
+    fencengDemo：web测试案例分层的demo案例，需要启动demo网站后才可运行
     
     AutoItDemo：AutoItLibrary的demo案例，windows下运行。test目录是案例，demo目录是网页上传下载用的页面。
     
@@ -78,3 +79,7 @@
     RequestsDemo：RequestsLibrary的demo案例，需要在前面的网站启动后才可运行
     
     rf-video：录制了2个视频，一个是AutoIt的视频，一个是Oracle数据库的视频。不过放在github上太大了，影响大家下载案例，所以我放到其他地方了，http://share.weiyun.com/0e5cee9ac473925263fe9432743826a6
+    
+    rf-book-case：是正在写的robotframework的书里的里的例子
+    
+    Selenium2Library-demo：Selenium2Library的demo案例，默认是ie打开，如果使用其他浏览器请自行修改。需要启动demo网站后才可运行。

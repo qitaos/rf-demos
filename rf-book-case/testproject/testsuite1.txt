@@ -1,0 +1,7 @@
+*** Settings ***
+Resource          ../test/newresource.txt
+
+*** Test Cases ***
+case1
+    log    hello world
+    打印日志
