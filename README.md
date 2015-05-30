@@ -72,7 +72,7 @@
     
     fencengDemo：web测试案例分层的demo案例，需要启动demo网站后才可运行
     
-    AutoItDemo：AutoItLibrary的demo案例，windows下运行。test目录是案例，demo目录是网页上传下载用的页面。
+    AutoItDemo：AutoItLibrary的demo案例，windows下运行。test目录是案例，需要在前面的网站启动后才可运行
     
     DatabaseDemo：DatabaseLibrary的demo案例，oracle案例运行不了，需要有环境，sqlite3案例可以直接运行。
     
