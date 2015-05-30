@@ -69,17 +69,23 @@
     打开http://127.0.0.1:8000/ 或者 http://localhost:8000/ 就可以看到页面了。
 
 5. 目录结构
-    
-    fencengDemo：web测试案例分层的demo案例，需要启动demo网站后才可运行
-    
-    AutoItDemo：AutoItLibrary的demo案例，windows下运行。test目录是案例，需要在前面的网站启动后才可运行
-    
-    DatabaseDemo：DatabaseLibrary的demo案例，oracle案例运行不了，需要有环境，sqlite3案例可以直接运行。
-    
-    RequestsDemo：RequestsLibrary的demo案例，需要在前面的网站启动后才可运行
-    
+- - -
+    fencengDemo：web测试案例分层的demo案例。
+    * 需要启动demo网站后才可运行
+- - - 
+    AutoItDemo：AutoItLibrary的demo案例。
+    * Calculator Test Cases是AutoItLibrary官方的demo，只能值Windows下运行。我修改成中文Windows可以运行，如果是英文Windows可以直接找原版demo运行。
+    * test目录是结合Selenium2Library的web测试案例（包括对话框处理和上传下载）。所有案例在windows下都可以运行，在Mac上只有2个Suite的第一个案例可以运行，其他案例在Mac上也会pass，但是会提示"Mac系统不支持该案例"。在Mac上运行之前要修改一下“打开网页”里面使用的浏览器。
+    * test的案例需要启动demo网站后才可运行
+- - -
+    DatabaseDemo：DatabaseLibrary的demo案例。
+    * oracle案例运行不了，需要你有oracle环境并且安装了cx_Oracle，同时也要修改sql脚本为你的表
+    * sqlite3案例可以直接运行。
+- - - 
+    RequestsDemo：RequestsLibrary的demo案例，需要启动demo网站后才可运行
+- - -
     rf-video：录制了2个视频，一个是AutoIt的视频，一个是Oracle数据库的视频。不过放在github上太大了，影响大家下载案例，所以我放到其他地方了，http://share.weiyun.com/0e5cee9ac473925263fe9432743826a6
-    
+- - -
     rf-book-case：是正在写的robotframework的书里的里的例子
-    
+- - -
     Selenium2Library-demo：Selenium2Library的demo案例，默认是ie打开，如果使用其他浏览器请自行修改。需要启动demo网站后才可运行。
