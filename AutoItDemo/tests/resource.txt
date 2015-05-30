@@ -1,13 +1,11 @@
 *** Settings ***
 Library           Selenium2Library
 Library           AutoItLibrary
+Library           OperatingSystem
 
 *** Keywords ***
 打开网页
-    Comment    log    ${CURDIR}
-    ${url}    Set Variable    ${CURDIR}/../demo/index.html
-    Comment    ${url}    Evaluate    '${url}'.replace('\\','\\\\')
-    open browser    ${url}    gc
+    Open Browser    http://localhost:8000/updown/    ie
 
 关闭网页
     Close All Browsers
@@ -21,3 +19,7 @@ Library           AutoItLibrary
     Control CLICK    ${EMPTY}    ${EMPTY}    Button1
     Comment    Win Close    ${title}
     [Return]    ${ret}
+
+判断平台
+    ${sys}    Evaluate    sys.platform == 'darwin'    sys
+    Pass Execution If    '${sys}'=='True'    Mac系统不支持该案例
