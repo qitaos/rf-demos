@@ -3,24 +3,24 @@ Library           DatabaseLibrary
 
 *** Test Cases ***
 sqlite3-test1
-    Connect To Database Using Custom Params    sqlite3    '${CURDIR}/demo.db'    #CREATE TABLE order_item(id integer primary key, name text, quantity integer)
+    Connect To Database Using Custom Params    sqlite3    '${CURDIR}${/}demo.db'    #CREATE TABLE order_item(id integer primary key, name text, quantity integer)
     Comment    ${a}    Delete All Rows From Table    order_item
-    ${table}    query    select * from sqlite_master where type = "table"
-    ${a}    row_count    select * from order_item where name='范德萨防守打法撒'
+    ${table}    Query    select * from sqlite_master where type = 'table'
+    ${a}    Row Count    select * from order_item where name='范德萨防守打法撒'
     Comment    ${a}    description    select * from order_item
-    ${id}    query    select max(id)+1 from order_item
-    ${id}    evaluate    '${id}'.replace('None','1')
-    ${id}    evaluate    ${id}
-    ${d}    Execute Sql String    insert into order_item values (${id[0][0]},"product${id[0][0]}", ${id[0][0]})
-    ${ao}    query    select * from order_item
-    log many    ${ao[-1]}
+    ${id}    Query    select max(id)+1 from order_item
+    ${id}    Evaluate    '${id}'.replace('None','1')
+    ${id}    Evaluate    ${id}
+    ${d}    Execute Sql String    insert into order_item values (${id[0][0]},'product${id[0][0]}', ${id[0][0]})
+    ${ao}    Query    select * from order_item
+    Log Many    ${ao[-1]}
     ${check1}    Run Keyword And Ignore Error    Check If Not Exists In Database    select * from order_item where id=1
     ${check2}    Run Keyword And Ignore Error    Check If Exists In Database    select * from order_item where id=10000
     Comment    ${a}    Delete All Rows From Table    order_item
     Disconnect From Database
 
 sqlite3-test2
-    Connect To Database Using Custom Params    sqlite3    '${CURDIR}/demo.db'
-    ${id}    query    select * from order_item
-    log    ${id[0][1]}
+    Connect To Database Using Custom Params    sqlite3    '${CURDIR}${/}demo.db'
+    ${id}    Query    select * from order_item
+    Log    ${id[0][1]}
     Disconnect From Database
