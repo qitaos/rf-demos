@@ -14,7 +14,7 @@ Library           OperatingSystem
     [Arguments]    ${title}    ${text}=
     [Documentation]    关闭对话框
     Win Wait    ${title}    ${text}    30
-    ${ret}=    control get text    ${EMPTY}    ${EMPTY}    Static2
+    ${ret}=    Control Get Text    ${EMPTY}    ${EMPTY}    Static2
     Log    ${ret}
     Control CLICK    ${EMPTY}    ${EMPTY}    Button1
     Comment    Win Close    ${title}
