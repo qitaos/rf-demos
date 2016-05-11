@@ -1,5 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+    //$( "#format" ).change(function() {
+    //  $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+    //});
+  });
+  </script>
 <script type=text/javascript>
 
   $(function() {
@@ -102,6 +111,8 @@
 <p>
 <select id="selectdemo" name="selectdemo"><option value="item1">第一个元素</option><option value="item2">第二个元素</option><option value="item3">第三个元素</option></select> 
 
+<p>Date: <input type="text" id="datepicker" readonly></p>
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 <script type=text/javascript>
 
 </script>
