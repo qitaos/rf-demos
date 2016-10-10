@@ -8,7 +8,7 @@ from flask_restful import Api, Resource
 from demodao import Dao
 import time
 import atexit
-from flask.ext.httpauth import HTTPBasicAuth
+from flask_httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
 
 def cleanup():
@@ -154,6 +154,10 @@ def getlist():
     return jsonify(AllProducts=ret_data)
 
 @app.route('/post', methods=['POST','GET'])
+def posttemp():
+    webapi()
+
+@app.route('/uri-test', methods=['POST','GET'])
 def webapi():
     message = None
     
