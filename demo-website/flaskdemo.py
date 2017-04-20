@@ -155,7 +155,7 @@ def getlist():
 
 @app.route('/post', methods=['POST','GET'])
 def posttemp():
-    webapi()
+    return webapi()
 
 @app.route('/uri-test', methods=['POST','GET'])
 def webapi():
@@ -167,6 +167,83 @@ def webapi():
    
     #print ret_data
     return None
+
+@app.route('/getrequesttest/', methods=['GET'])
+def getrequesttest():
+    print request.args
+    flag = request.args.get('flag')
+    args1 = request.args.to_dict()
+    args2 = request.args.to_dict()
+    args3 = request.args.to_dict()
+    args1['json1'] = None
+    args1['测试'] = 111
+    args2['json2'] = 200
+    args3['json3'] = 300
+    if not flag:
+        args1['x'] = request.args
+        args2['y'] = request.args
+        args3['z'] = request.args
+        ret_data = [args1, args2, args3]
+    else:
+        ret_data = {'x':[args1,args2],'y':[args1,args3]}
+    print ret_data
+    return jsonify(ret_data)
+
+@app.route('/postrequesttest', methods = ['POST','GET'])
+def postrequesttest():
+    message = None
+    
+    if request.method == 'POST':
+        message = request.form['username']
+        return jsonify({'username':message})
+    if request.method == 'GET':
+        message = request.args.get('username')
+        return jsonify({'username':message})
+   
+    #print ret_data
+    return None
+
+@app.route('/putrequesttest/', methods=['GET','PUT'])
+def putrequesttest():
+    print request.args
+    flag = request.args.get('flag')
+    args1 = request.args.to_dict()
+    args2 = request.args.to_dict()
+    args3 = request.args.to_dict()
+    args1['json1'] = None
+    args1['测试'] = 111
+    args2['json2'] = 200
+    args3['json3'] = 300
+    if not flag:
+        args1['x'] = request.args
+        args2['y'] = request.args
+        args3['z'] = request.args
+        ret_data = [args1, args2, args3]
+    else:
+        ret_data = {'x':[args1,args2],'y':[args1,args3]}
+    print ret_data
+    return jsonify(ret_data)
+
+@app.route('/deleterequesttest/', methods=['GET','DELETE'])
+def deleterequesttest():
+    print request.args
+    flag = request.args.get('flag')
+    args1 = request.args.to_dict()
+    args2 = request.args.to_dict()
+    args3 = request.args.to_dict()
+    args1['json1'] = None
+    args1['测试'] = 111
+    args2['json2'] = 200
+    args3['json3'] = 300
+    if not flag:
+        args1['x'] = request.args
+        args2['y'] = request.args
+        args3['z'] = request.args
+        ret_data = [args1, args2, args3]
+    else:
+        ret_data = {'x':[args1,args2],'y':[args1,args3]}
+    print ret_data
+    return jsonify(ret_data)
 
 
 @app.route('/users/<userid>', methods = ['GET'])
